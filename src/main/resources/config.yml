@@ -1,0 +1,36 @@
+# QQ 群中注册的命令，不需要前导斜杠。
+# 默认名称会优先使用主分支原生命令或 AGENT AddonAPI；自定义名称走事件兼容入口。
+bot-command: "性能监控"
+push-command-menu: true
+
+# 显示在运行核心上方的单服名称。
+server-name: "MinecraftServer"
+
+# 同一个群连续请求的最短间隔。
+cooldown-seconds: 5
+
+render:
+  # Linux 精简系统建议安装 Noto Sans CJK 并填写 Noto Sans CJK SC。
+  font-family: ""
+
+thresholds:
+  tps:
+    warning-below: 19.5
+    critical-below: 18.0
+  mspt:
+    warning-above: 40.0
+    critical-above: 50.0
+  cpu:
+    warning-above: 75.0
+    critical-above: 90.0
+  memory:
+    warning-percent: 75.0
+    critical-percent: 90.0
+
+messages:
+  busy: "性能图正在生成，请稍候再试。"
+  failed: "性能图生成或发送失败，请稍后再试。"
+  usage: "用法：/{command}"
+
+image-api:
+  max-bytes: 20971520

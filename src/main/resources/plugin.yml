@@ -1,0 +1,19 @@
+name: HuHoBotPerformance
+version: '${version}'
+main: cn.huohuas001.huhobot.performance.PerformancePlugin
+description: 为 HuHoBot 生成单服实时性能监控图片
+authors:
+  - RiegaLee
+  - Shabby-666
+api-version: '1.16'
+load: POSTWORLD
+softdepend:
+  - HuHoBotPenguin
+commands:
+  huhobotperformance:
+    description: HuHoBot 性能监控附属插件管理与预览命令
+    usage: /huhobotperformance [preview [healthy|warning|critical|unavailable]]
+permissions:
+  huhobotperformance.admin:
+    description: 允许生成性能监控测试预览
+    default: op
