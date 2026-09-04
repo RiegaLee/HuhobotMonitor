@@ -2,6 +2,10 @@
 
 HuHoBot 的单服性能监控 Addon。QQ群发送 `/性能监控` 后，插件在 Bukkit 主线程抓取一份轻量快照，在独立线程中绘制 1200×900 的“运行核心”图片，并通过 HuHoBot 当前分支可用的图片字节入口回复。
 
+## 效果预览
+
+![HuHoBotPerformance 性能监控预览](performance-preview-v1.png)
+
 ## 兼容目标
 
 - Spigot/Paper 1.16.5 及以上，Java 8 字节码。
