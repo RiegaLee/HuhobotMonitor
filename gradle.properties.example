@@ -1,0 +1,2 @@
+# Path to the current HuHoBot common Bot JAR when it is not in the sibling checkout.
+# Example: huhobotQqSdkJar=X:/path/to/common-Bot-1.5.0.jar

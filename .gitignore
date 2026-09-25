@@ -1,0 +1,31 @@
+# Generated build output
+/build/
+/.gradle/
+
+# User-owned/local-only Minecraft asset imports
+/data/
+/cache/
+/runtime-assets/
+/local-inputs/
+
+# Local build configuration
+/gradle.properties
+
+# IDE and operating-system files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Runtime server data and generated snapshots
+/plugins/
+/server/
+/logs/
+*.log
+bindings.yml
+
+# Local project handoff and internal validation notes
+/completed.md
+/current-status.md
+/next-steps.md

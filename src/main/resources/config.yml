@@ -1,17 +1,52 @@
 # QQ 群中注册的命令，不需要前导斜杠。
-# 默认名称会优先使用主分支原生命令或 AGENT AddonAPI；自定义名称走事件兼容入口。
-bot-command: "性能监控"
+# 默认名称使用当前主分支的 Addon 注册接口；自定义名称走动态命令事件入口。
+bot-command: "服务器状态"
 push-command-menu: true
 
-# 显示在运行核心上方的单服名称。
+# 显示在标题栏右侧的服务器名称。
 server-name: "MinecraftServer"
 
 # 同一个群连续请求的最短间隔。
 cooldown-seconds: 5
 
+# 回复形式只能在这里配置，QQ群指令始终是 /服务器状态，不需要添加任何参数。
+# 修改本文件并保存后，重启服务器使配置生效；请保留下面的缩进（使用空格，不要使用 Tab）。
+reply:
+  # 希望在群里展示图表和自定义底图、且不介意图片上传流量：保留 mode: image。
+  # 图片模式每次查询都会生成并上传一张状态图，比纯文字消耗更多流量和绘图资源。
+  # 服务器按流量计费、带宽有限，或只想快速查看数值：将下一行改为 mode: text。
+  # 文字模式仍会显示 TPS、CPU、内存、在线人数和诊断，但不展示图表或自定义底图。
+  # 文字模式不会加载底图/字体，也不会生成或上传图片；文字消息本身仍有少量流量。
+  # 只填写 image 或 text，不要填写中文。两种模式都使用同一个 /服务器状态 指令。
+  mode: image
+  # 仅 image 模式使用，可填写 true 或 false，默认 true：
+  # true：图片初始化、生成或发送失败时，自动尝试回复文字状态。
+  # 建议保留 true，避免图片出错后查不到状态；它不是省流量开关，仍会先尝试生成和发送图片。
+  # 若想从一开始就不上传图片，请把上面的 mode 改为 text，而不是修改本项。
+  # false：不自动回退；生成/发送失败只提示错误，初始化失败则插件停止启用。
+  # 如果 mode 已设为 text，本项不会影响纯文字回复，保留默认值即可。
+  fallback-to-text: true
+
 render:
   # Linux 精简系统建议安装 Noto Sans CJK 并填写 Noto Sans CJK SC。
   font-family: ""
+  # 卡片是浅烟灰透明材质，不是黑色遮罩；数值越低，底图在卡片内越清楚。
+  # 建议保持在 0.08–0.16，默认 0.12。
+  surface-opacity: 0.12
+  # 根据整张底图亮度调整一层很轻的全局压暗，使白字稳定，但不改变卡片透明材质。
+  adaptive-backdrop-dimming: true
+  # 全局压暗的最大强度。它作用于整张底图，不会把单张卡片变成深色块。
+  maximum-backdrop-dimming: 0.38
+  # 默认不模糊，让人物、插画等自定义底图保持干净；透明深色卡片负责保证文字可读性。
+  # 喜欢磨砂效果时可尝试 8–16，范围 0–64。数值越大，底图细节越容易被揉成色块。
+  glass-blur-radius: 0
+  # 可选的用户底图。PNG 放入 plugins/HuhobotMonitor/assets/custom/backgrounds/。
+  # 若启用模糊，也只作用于卡片内部，不增加全图蒙版或调色。
+  custom-background:
+    enabled: false
+    file: performance.png
+    # cover 保持比例并居中裁切；stretch 拉伸到 1200x900。
+    fit: cover
 
 thresholds:
   tps:
@@ -28,8 +63,8 @@ thresholds:
     critical-percent: 90.0
 
 messages:
-  busy: "性能图正在生成，请稍候再试。"
-  failed: "性能图生成或发送失败，请稍后再试。"
+  busy: "请求较频繁或状态正在生成，请稍候再试。"
+  failed: "服务器状态获取或发送失败，请稍后再试。"
   usage: "用法：/{command}"
 
 image-api:
